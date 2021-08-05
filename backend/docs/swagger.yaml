@@ -1,0 +1,186 @@
+basePath: /api/
+definitions:
+  request.CreateTask:
+    properties:
+      ddl:
+        type: string
+      text:
+        type: string
+    required:
+    - text
+    type: object
+  request.DeleteTask:
+    properties:
+      id:
+        items:
+          type: integer
+        type: array
+    required:
+    - id
+    type: object
+  request.Login:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    required:
+    - password
+    - username
+    type: object
+  request.Register:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    required:
+    - password
+    - username
+    type: object
+  request.UpdateTask:
+    properties:
+      ddl:
+        type: string
+      id:
+        type: integer
+      isFinish:
+        type: boolean
+      text:
+        type: string
+    required:
+    - id
+    type: object
+info:
+  contact: {}
+  description: This is a sample Server pets
+  title: TodoList API
+  version: 0.0.1
+paths:
+  /tasks:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 任务id
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.DeleteTask'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"删除成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 删除任务
+      tags:
+      - Task
+    get:
+      consumes:
+      - application/json
+      description: 查询未完成任务以及当天更新的任务
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 查询任务
+      tags:
+      - Task
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 任务id,任务内容,截止日期，完成状态
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.UpdateTask'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"更新成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 更新任务
+      tags:
+      - Task
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 任务内容,截止日期
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.CreateTask'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"创建成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 创建任务
+      tags:
+      - Task
+  /user/login:
+    post:
+      parameters:
+      - description: 用户名, 密码
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.Login'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"登陆成功"}'
+          schema:
+            type: string
+      summary: 用户登录
+      tags:
+      - User
+  /user/register:
+    post:
+      parameters:
+      - description: 用户名, 密码
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.Register'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"注册成功"}'
+          schema:
+            type: string
+      summary: 用户注册账号
+      tags:
+      - User
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
