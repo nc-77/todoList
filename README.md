@@ -14,7 +14,7 @@ a simple TodoList builting with Vue ,Go and MySQL
 
 - https://todo.nc-77.top 
 
-  <img src="https://img.nc-77.top/20210805143307.png" style="zoom:67%;" />
+  <img src="https://img.nc-77.top/20210805143307.png" style="max-width:67%;" />
 
 ## Usage
 
