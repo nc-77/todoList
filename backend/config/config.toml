@@ -1,0 +1,13 @@
+title = "TodoList"
+
+[database]
+host = ""
+port = "3306"
+user = ""
+password = ""
+dbname = "todo"
+connection_max = 5000
+enabled = true
+
+[httpserver]
+addr = ":8082"

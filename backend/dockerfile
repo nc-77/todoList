@@ -1,0 +1,13 @@
+FROM golang:alpine AS builder
+ENV GO111MODULE=on \
+    GOPROXY=https://goproxy.io,direct
+# 移动到工作目录：/build
+WORKDIR /backend
+
+COPY . .
+
+RUN go build -o todoApi .
+
+EXPOSE 8082
+# 需要运行的命令
+ENTRYPOINT  ["/backend/todoApi"]

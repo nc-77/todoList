@@ -1,0 +1,48 @@
+version: '3'
+services:
+  frontend:
+    container_name: todo-web
+    environment:
+      TZ: Asia/Shanghai
+    build:
+      context: ./frontend
+      dockerfile: dockerfile
+    ports:
+      - "8081:8081" 
+    depends_on:
+      - backend
+
+  backend:
+    container_name: todo-api
+    environment:
+      TZ: Asia/Shanghai
+    restart: always
+    build:
+      context: ./backend
+      dockerfile: dockerfile
+    ports:
+      - "8082:8082"
+    depends_on:
+      - db
+    volumes:
+      - ./data/logs:/backend/logs
+
+      
+  db:
+    restart: always
+    container_name: mysql
+    image: mysql:8
+    environment:
+        TZ: Asia/Shanghai
+        MYSQL_ROOT_PASSWORD: todoList
+        MYSQL_DATABASE: todo
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+      - ./data/mysql-init:/docker-entrypoint-initdb.d
+
+      
+networks:
+    default:  
+        external:  
+            name: todo
+      
