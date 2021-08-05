@@ -1,5 +1,4 @@
-# 📅TodoList
-
+# 📅TodoList![example workflow](https://github.com/nc-77/todoList/actions/workflows/go.yml/badge.svg?branch=main)    
 
 
 a simple TodoList builting with Vue ,Go and MySQL
@@ -14,7 +13,7 @@ a simple TodoList builting with Vue ,Go and MySQL
 
 - https://todo.nc-77.top 
 
-  <img src="https://img.nc-77.top/20210805143307.png" style="max-width:67%;" />
+  <img src="https://img.nc-77.top/20210805143307.png" width="67%"/>
 
 ## Usage
 
